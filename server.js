@@ -33,14 +33,10 @@ hbs.registerHelper('screamIt',(text) => {
 });
 
 
-var coreData = (pageTitle) => {
-	return {
+app.get('/', (req, res) => {
+	var data = {
 		pageTitle: "Home"
 	};
-};
-
-app.get('/', (req, res) => {
-	var data = coreData("Home");
 	data.welcomeMessage = "Welcome to our new website.";
 	res.render('home.hbs',data);
 });
@@ -48,8 +44,18 @@ app.get('/', (req, res) => {
 
 
 app.get('/about', (req, res) => {
-	var data = coreData("About us");
+	var data = {
+		pageTitle: "About us"
+	};
 	res.render('about.hbs',data);
+});
+
+app.get('/projects', (req, res) => {
+	var data = {
+		pageTitle: "Projects",
+		body: "Here is an extensive list of my projects"
+	};
+	res.render('projects.hbs',data);
 });
 
 
