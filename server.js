@@ -13,7 +13,9 @@ app.use((req, res, next) => {
 	var now = new Date().toString();
 	var log = `${now}: ${req.method} ${req.url}`;
 	fs.appendFile('server.log', log + '\n', (err) => {
-		console.log("cannot write file");
+		if (err) {
+			console.log("cannot write file");
+		}
 	});
 	next();
 });
